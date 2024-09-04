@@ -10,6 +10,7 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 20px; 
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 h1, h2 {
@@ -50,6 +51,7 @@ button:hover {
     max-width: 400px; 
     box-sizing: border-box; 
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; 
+    overflow-x: auto; /* Add horizontal scroll */
 }
 
 #emailDisplay:empty, #mailContent:empty {
@@ -71,7 +73,7 @@ button:hover {
     transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out; 
     overflow: hidden; 
     width: 90%; 
-    max-width: auto; 
+    max-width: 600px; 
 }
 
 #inbox:not([style*="display: block"]) {
