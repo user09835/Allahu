@@ -1,4 +1,3 @@
-const domains = ["1secmail.com", "1secmail.org", "1secmail.net", "vjuum.com", "laafd.com", "txcct.com", "rteet.com", "dpptd.com"];
 let currentEmail = '';
 
 document.getElementById('generateEmail').addEventListener('click', generateEmail);
@@ -20,15 +19,19 @@ window.onload = function() {
 };
 
 function generateEmail() {
-    const username = Math.random().toString(36).substring(2, 10);
-    const domain = domains[Math.floor(Math.random() * domains.length)];
-    currentEmail = `${username}@${domain}`;
-    document.getElementById('emailDisplay').innerText = currentEmail;
-    document.getElementById('generateEmail').style.display = 'none';
-    document.getElementById('generateAnother').style.display = 'inline';
-    document.getElementById('copyButton').style.display = 'inline';
-    document.getElementById('inbox').style.display = 'block';
-    localStorage.setItem('lastEmail', currentEmail); // Save the email to localStorage
+    fetch('https://www.1secmail.com/api/v1/?action=getDomainList')
+        .then(response => response.json())
+        .then(domains => {
+            const username = Math.random().toString(36).substring(2, 10);
+            const domain = domains[Math.floor(Math.random() * domains.length)];
+            currentEmail = `${username}@${domain}`;
+            document.getElementById('emailDisplay').innerText = currentEmail;
+            document.getElementById('generateEmail').style.display = 'none';
+            document.getElementById('generateAnother').style.display = 'inline';
+            document.getElementById('copyButton').style.display = 'inline';
+            document.getElementById('inbox').style.display = 'block';
+            localStorage.setItem('lastEmail', currentEmail); // Save the email to localStorage
+        });
 }
 
 function copyEmail() {
@@ -55,6 +58,7 @@ function checkMail() {
                     });
             } else {
                 document.getElementById('mailContent').innerText = 'No new messages.';
-            }
+ 
+           }
         });
 }
