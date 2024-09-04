@@ -22,6 +22,11 @@ register_blueprints(app)
 def custom_static(filename):
     return send_from_directory('scripts', filename)
 
+# Serve JavaScript files from 'scripts' folder
+@app.route('/static/<path:filename>')
+def custom_static(filename):
+    return send_from_directory('static', filename)
+
 # Custom 404 Error Handler
 @app.errorhandler(404)
 def page_not_found(e):
