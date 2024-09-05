@@ -51,7 +51,7 @@ def keep_alive_task():
             print(f"Failed to send keep-alive ping: {e}")
         
         # Sleep for 20 minutes (1200 seconds)
-        time.sleep(1200)
+        time.sleep(600)
 
 # Start the keep-alive thread when the Flask app starts
 if __name__ == "__main__":
